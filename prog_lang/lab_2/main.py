@@ -1,4 +1,5 @@
-from classes.file_service import FileService
+from classes.FileService import FileService
+
 new_file_system = FileService()
 
 
