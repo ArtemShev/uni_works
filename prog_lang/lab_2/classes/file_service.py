@@ -26,8 +26,8 @@ class FileService:
     def get_file(self,id):
         try:
             return f"Your file: '{self.data[id]}'"
-        except:
-            raise print("FILE NOT FOUND")
+        except id not in self.data:
+            print("ID doesn't exist")
 
     # Удаление файла
     def del_file(self,id):
@@ -36,8 +36,8 @@ class FileService:
             Filename = self.data.pop(id)
             self.used_ids.append(id)
             return f"File '{Filename}' delete success"
-        except:
-            return "FILE NOT FOUND"
+        except Filename == "" or id not in self.data:
+            print("File wasn't delete")
 
     # смена id
     def change_id(self,id, new_id):
@@ -63,8 +63,8 @@ class FileService:
             else:
                 self.data[new_id] = self.data.pop(id)
                 return f"id change success to {new_id}"
-        except:
-            raise "SMTH WRONG"
+        except ValueError:
+            print("incorrect id")
 
 
     # Выборка нескольких файлов по айди
