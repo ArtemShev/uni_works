@@ -7,8 +7,9 @@ class IncorrectArgExeption(Exception):
 
 
 class NonExistentExeption(Exception):
-    def __init__(self, id):
-        self.id = id
+    def __init__(self, arg):
+        self.arg = arg
 
     def __str__(self) -> str:
-        return f"{self.id} - non-existent"
+
+        return f"{self.arg} - non-existent"

@@ -1,5 +1,5 @@
-from .Exepts import IncorrectArgExeption
-from .Exepts import NonExistentExeption
+from Exepts import IncorrectArgExeption
+from Exepts import NonExistentExeption
 class FileService:
     def __init__(self,data={}):
         self.data = data
@@ -28,8 +28,8 @@ class FileService:
     def get_file(self,id):
         try:
             return f"Your file: '{self.data[id]}'"
-        except NonExistentExeption as e:
-            print(f"error occured: {e}")
+        except KeyError:
+            raise NonExistentException(id)
 
     # Удаление файла
     def del_file(self,id):
@@ -38,8 +38,9 @@ class FileService:
             Filename = self.data.pop(id)
             self.used_ids.append(id)
             return f"File '{Filename}' delete success"
-        except NonExistentExeption as e:
-            print(f"error occured: {e}")
+        except KeyError:
+            raise NonExistentException(id)
+
 
     # смена id
     def change_id(self,id, new_id):
@@ -65,8 +66,8 @@ class FileService:
             else:
                 self.data[new_id] = self.data.pop(id)
                 return f"id change success to {new_id}"
-        except IncorrectArgExeption as e:
-            print(f"Error occured: {e}")
+        except id != int or id not in self.data:
+            raise IncorrectArgExeption(id)
 
 
     # Выборка нескольких файлов по айди
