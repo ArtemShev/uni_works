@@ -11,11 +11,21 @@ while True:
     elif command == "set":
         print("ваш id : ",new_file_system.set_file(input("Укажите имя файла:\n")))
     elif command == "get":
-        print(new_file_system.get_file(int(input("Укажите id файла:\n"))))
+        try:
+            print(new_file_system.get_file(int(input("Укажите id файла:\n"))))
+        except NonExistentException as e:
+            print(f"SMTH WRONG: {e} ")
+
     elif command == "del":
-        print(new_file_system.del_file(int(input("Укажите ID файла:\n"))))
+        try:
+            print(new_file_system.del_file(int(input("Укажите ID файла:\n"))))
+        except NonExistentException as e:
+            print(f"SMTH WRONG: {e} ")
     elif command == "change":
-        print(new_file_system.change_id(int(input("Укажите id файла:")),int(input("Укажите новый id файла:"))))
+        try:
+            print(new_file_system.change_id(int(input("Укажите id файла:")),int(input("Укажите новый id файла:"))))
+        except IncorrectArgExeption as e:
+            print(f"SMTH WRONG: {e} ")
     elif command == "few":
         print(new_file_system.get_few_files(input("Укажите ID файлов через пробел:\n")))
     elif command == "backup":
